@@ -1,0 +1,7 @@
+#this will create a .pem file inside the metasploit loot folder
+# please note where it is and modify the XX_.rc scripts
+# if you want you can use another website
+# you can use loots to find it again
+use auxiliary/gather/impersonate_ssl
+set RHOSTS www.github.com
+exploit

