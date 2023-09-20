@@ -1,0 +1,61 @@
+---
+#Join domain
+
+- name: Configure DNS
+  win_dns_client:
+    adapter_names: Ethernet0
+    ipv4_addresses:
+      - 10.168.160.5
+      - 8.8.8.8
+
+- name: Join domain
+  microsoft.ad.membership:
+    dns_domain_name: "{{ domain_name }}"
+    domain_admin_user: "{{ ansible_user }}@{{ domain_name }}"
+    domain_admin_password: "{{ ansible_password }}"
+    state: domain
+  register: domain_state
+
+
+- name: Reboot after joining domain
+  win_reboot:
+  when: domain_state.reboot_required
+
+  # Install File server
+- name: Install File server
+  win_feature:
+    name: FS-FileServer
+    state: present
+    include_sub_features: yes
+    include_management_tools: yes
+  register: win_feature
+
+- name: Reboot after File server installation
+  win_reboot:
+  when: win_feature.reboot_required
+
+
+- name: Create share folder
+  ansible.windows.win_file:
+    path: C:\Share\internal
+    state: directory
+
+- name: Add Share for gpo
+  win_share:
+    name: internal
+    path: C:\Share\internal
+    full: Administrators
+    state: present
+
+
+- name: Copy exe file
+  win_copy:
+    src: edrinstaller.exe
+    dest: C:\Share\
+  tags: ["install_exe"]
+
+- name: Copy msi file
+  win_copy:
+    src: edr_installer.msi
+    dest: C:\Share\
+  tags: ["install_msi"]

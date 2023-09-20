@@ -1,0 +1,24 @@
+---
+
+- hosts: dc
+  roles: 
+    - domain
+
+
+- hosts: windows
+  roles:
+    - common
+
+- hosts: windows
+  strategy: free
+  tasks:
+    - include_role:
+        name: winserver
+      when: "'winserver' in group_names"
+    - include_role:
+        name: win10
+      when: "'win10' in group_names"
+    - include_role:
+        name: dc
+      when: "'dc' in group_names"
+

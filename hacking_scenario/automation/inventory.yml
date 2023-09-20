@@ -1,0 +1,10 @@
+---
+windows:
+  children:
+    win10:
+      hosts: 10.168.160.138
+    winserver:
+      hosts: 10.168.160.15
+    dc:
+      hosts: 10.168.160.5
+    

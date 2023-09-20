@@ -1,0 +1,7 @@
+---
+
+- import_tasks: installDependencies.yml
+
+- import_tasks: installAtomicRedTeam.yml
+
+- import_tasks: installEDR.yml

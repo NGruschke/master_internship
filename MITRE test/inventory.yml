@@ -1,0 +1,14 @@
+---
+mitre:
+  hosts: 10.168.160.140
+  vars:
+    ansible_connection: winrm
+    ansible_user: "sysadmin"
+    ansible_password: "P@ssw0rd"
+    atomic_execution_framework_install_path: "C:\\tools"
+    atomics_install_path: "c:\\tests"
+    atomics_defender_exclusion: true
+    atomics_repo_owner: "redcanaryco"
+    atomics_repo_branch: "master"
+    powershell_profile_install: true
+    powershell_profile: "C:\\Users\\sysadmin\\Documents\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1"

@@ -1,0 +1,22 @@
+---
+- name: Install chocolatey 
+  win_chocolatey:
+    name:
+      - chocolatey
+      - chocolatey-core.extension
+    state: present
+
+- name: Install programm with chocolatey 
+  win_chocolatey:
+    name: 
+      - opera
+      - firefox
+      - winrar
+      - 7zip
+      - ruby
+    state: present
+
+- name: Install powershell-yaml Dependency
+  community.windows.win_psmodule:
+    name: powershell-yaml
+    accept_license: true
