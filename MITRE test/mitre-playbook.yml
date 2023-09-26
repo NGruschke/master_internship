@@ -1,0 +1,5 @@
+---
+
+- hosts: mitre
+  roles:
+    - atomic

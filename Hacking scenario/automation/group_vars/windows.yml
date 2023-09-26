@@ -2,4 +2,4 @@ domain_name: "nglab.lu"
 ansible_connection: winrm
 ansible_winrm_server_cert_validation: ignore
 ansible_user: "sysadmin"
-ansible_password: "P@ssw0rd"
+ansible_password: "netw0rk4U$"
