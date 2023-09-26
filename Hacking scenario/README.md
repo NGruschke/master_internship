@@ -58,7 +58,7 @@ copy the created file on you windows machine, you can use the python http.server
 ### 2. Create the injected
 
 **Evil Windows machine**
-Download the cotent of the payload and copy it inside the `Executable_gen.cs` and execute ``
+Download the cotent of the payload and copy it inside the `Executable_gen.cs` and execute `csc Executable_gen.cs`
 
 <!-- add scree of cs creation -->
 
@@ -74,7 +74,7 @@ execute the following command `msfconsole -q -r 00_impersonate_github.rc` and ch
 <!-- execute 00 -->
 <!-- add scree pem file -->
 
-run the following command `` this will create the listener of your backdoor.
+run the following command `resource 01_create_backdoor.rc` this will create the listener of your backdoor.
 
 **Windows machine**
 Login with the user with local admin privileges
@@ -87,16 +87,16 @@ result of the connection
 ### 4. create privilege escalation
 
 **Kali Linux machine**
-run the command `resources 02_create_priv_esc.rc` this will create the privilege escalation move to a privileged process and execute bloodhound (a AD scanner)
+run the command `resource 02_create_priv_esc.rc` this will create the privilege escalation move to a privileged process and execute bloodhound (a AD scanner)
 
 after that you can dezip the zip file created during the escalation step if you want and run bloodhound but this is not required since you know which user to use.
 
 ### 5. create persistence
 
 **Kali Linux machine**
-run the command `resources 04_create_persistence_listener.rc` to create the listener for your persistance and run `ressources 03_create_persistence.rc` to create the persistance
+run the command `resource 04_create_persistence_listener.rc` to create the listener for your persistance and run `ressource 03_create_persistence.rc` to create the persistance
 
 ### 6. lateral mouvement
 
 **Kali Linux machine**
-for the lateral mouvement you will use the following script in your msfconsole `resources 05_lateral_mouvement.rc` don't forget to change the parrameter in the file. This will create a new session on your AD.
+for the lateral mouvement you will use the following script in your msfconsole `resource 05_lateral_mouvement.rc` don't forget to change the parrameter in the file. This will create a new session on your AD.
